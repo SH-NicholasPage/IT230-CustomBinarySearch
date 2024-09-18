@@ -1,9 +1,4 @@
-﻿/*
- * Name: [YOUR NAME HERE]
- * South Hills Username: [YOUR SOUTH HILLS USERNAME HERE]
- */
-
-using System;
+﻿using System;
 using System.Linq;
 
 namespace CustomBinarySearch
@@ -11,12 +6,6 @@ namespace CustomBinarySearch
 	public class Program
 	{
 		private const uint ARRAY_SIZE = 16;
-
-		private static int BinarySearch(int[] arr, int match)
-		{
-			//TODO
-			return -1;
-		}
 
 		//DO NOT MODIFY THE MAIN METHOD
 		public static void Main()
@@ -42,16 +31,46 @@ namespace CustomBinarySearch
 			Console.Write("Enter a number to search for: ");
 			int searchNum = int.Parse(Console.ReadLine()!);
 
-			int index = BinarySearch(randNums, searchNum);
+			int index = Source.BinarySearch(randNums, searchNum);
 
 			if(index != -1)
 			{
 				Console.WriteLine($"Number found at index {index}");
-			}
+                if (randNums[index] != searchNum)
+                {
+					PrintIncorrectMsg();
+                }
+				else
+				{
+					PrintCorrectMsg();
+                }
+            }
 			else
 			{
 				Console.WriteLine("Number not found");
+				if(randNums.Contains(searchNum))
+				{
+					PrintIncorrectMsg();
+                }
+				else
+				{
+					PrintCorrectMsg();
+                }
 			}
 		}
+
+		private static void PrintIncorrectMsg()
+		{
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Error.WriteLine("BinarySearch method is not implemented correctly");
+            Console.ResetColor();
+        }
+
+		private static void PrintCorrectMsg()
+		{
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("This result is correct");
+            Console.ResetColor();
+        }
 	}
 }
